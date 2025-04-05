@@ -1,16 +1,20 @@
-def max_div(n):
-    divs = {0}
-    for x in range(2, round(n ** 0.5) + 1):
-        if n % x == 0:
-            divs.add(x)
-            divs.add(n // x)
-    return max(divs)
-print(max_div(1750006))
-# n = 1750000
-# i = 0
-# while i < 5:
-#     n += 1
-#     md = max_div(n)
-#     if md <= 15000 and md % 10 == 7:
-#         print(n)
-#         i += 1
+def div(n):
+    d = set()
+    for i in range(2, int(n**0.5)+1):
+        if n % i == 0:
+            d.add(i)
+            d.add(n // i)
+    return d
+def prime(i):return i >= 2 and all(i % j !=0 for j in range(2, int(i**0.5)+1))
+k = 0
+for i in range(1_825_001, 2_000_000):
+    de = [x for x in div(i)]
+    pr = [x for x in de if prime(x)]
+    try:
+        if max(pr) <= 25_000 and max(pr) % 10 == 3:
+            print(i)
+            k += 1
+            if k == 5:
+                break
+    except:
+        ...
